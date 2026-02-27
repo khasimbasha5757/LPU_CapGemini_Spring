@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.Assigment3_26Feb2026ProductCategory.dao.CategoryJpaRepository;
 import com.capgemini.Assigment3_26Feb2026ProductCategory.dto.Category;
+import com.capgemini.Assigment3_26Feb2026ProductCategory.exception.CategoryNotFoundException;
 
 @RestController
 @RequestMapping("/category")
@@ -50,16 +54,42 @@ public class CategoryController {
 
 		category.setCategoryName(newCategory.getCategoryName());
 		category.setDescription(newCategory.getDescription());
+
 		return categoryRepo.save(category);
 	}
+	
 	@DeleteMapping("delete/{id}")
     public String deleteCategory(@PathVariable int id) {
         categoryRepo.deleteById(id);
         return "Category Deleted Successfully";
     }
+	
+//	@GetMapping("/categories/{page}/{size}")
+//	public List<Category> getCategory(@PathVariable int page, @PathVariable int size) {
+//		Page<Category> p = categoryRepo.findAll(PageRequest.of(page, size));
+//		return p.getContent();
+//		
+//	}
+	
+	
 	@GetMapping("/categories/{page}/{size}")
-	public List<Category> getCategory(@PathVariable int page, @PathVariable int size) {
-		Page<Category> p = categoryRepo.findAll(PageRequest.of(page, size));
+	public List<Category> getCategory(@PathVariable int page, @PathVariable int size,String field) {
+		Page<Category> p = categoryRepo.findAll(PageRequest.of(page, size,Sort.by("id").descending()));
 		return p.getContent();
+		
+	}
+	
+	//to find product by category
+	@GetMapping("/get-id/{id}")//100
+	public ResponseEntity<Category> getById(@PathVariable int id) {
+		Optional<Category> optional = categoryRepo.findById(id);
+		Category c = null;
+		if(optional.isPresent()) {
+			c=optional.get();
+			return new ResponseEntity<Category>(c,HttpStatus.FOUND);
+			}
+		else {
+			throw new CategoryNotFoundException("Category not found by id : "+id);
+		}
 	}
 }
