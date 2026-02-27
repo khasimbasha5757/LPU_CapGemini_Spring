@@ -1,0 +1,20 @@
+package springHibernatecom.capgemini;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages="springHibernatecom.capgemini")
+public class ProjectConfiguration {
+//	@Bean	
+//	public EntityManager getEntityManager() {
+//			return Persistence
+//					.createEntityManagerFactory("postgres")
+//					.createEntityManager();
+//		}
+}
