@@ -1,7 +1,7 @@
 <html>
 <head>User Register Page</head>
 <body>
-<form action="">
+<form action="create-account" method="post">
 
 Name: <input type="text" name="name"><br/>
 EmailId: <input type="text" name="email"><br/>

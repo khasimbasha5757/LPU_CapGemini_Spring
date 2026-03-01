@@ -1,0 +1,5 @@
+<html>
+<body>
+<h1>Registered</h1>
+
+</body></html>
