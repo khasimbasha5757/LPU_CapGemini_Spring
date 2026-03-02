@@ -54,33 +54,37 @@ public class DemoController {
 //		
 //		return "success";
 //	}
+	
 	@PostMapping("/create-account")
 	public String register(@ModelAttribute Users users) {
 		jpa.save(users);
 		return "success";
 	}
+	
 	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
+	
 	@PostMapping("/logincheck")
 	public String logincheck(HttpServletRequest request) {
-		String email=request.getParameter("email");
-		String password=request.getParameter("password");
-		Users user=jpa.findByEmailAndPassword(email, password);
-		if(user!=null) {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		Users user = jpa.findByEmailAndPassword(email, password);
+		if(user != null) {
 			return "loginsuccess";
-		}else {
+		} else {
 			return "redirect:/login";
 		}
 	}
+	
 	@GetMapping("/hi")
 	public ModelAndView sendData() {
-		ModelAndView m=new ModelAndView();
-		List<String> names=List.of("Miller","Allen","Smith");
+		ModelAndView m = new ModelAndView();
+		List<String> names = List.of("Miller","Allen","Smith");
 		m.addObject("msg",names);
 		m.setViewName("abc");
 		return m;
 	}
-	
-	}
+}
+

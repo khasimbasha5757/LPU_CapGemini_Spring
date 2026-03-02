@@ -1,22 +1,16 @@
 package com.capgemini.springmvcboot;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+
+import jakarta.persistence.Entity;
 
 @Entity
 public class Users {
-	
 	private String name;
 	@Id
 	private String email;
-	private String password;
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	private String number;
+	private String password;
 	public String getName() {
 		return name;
 	}
@@ -35,5 +29,19 @@ public class Users {
 	public void setNumber(String number) {
 		this.number = number;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	@Override
+	public String toString() {
+		return "Users [name=" + name + ", email=" + email + ", number=" + number + ", password=" + password + "]";
+	}
 	
+	
+	
+	
+
 }
