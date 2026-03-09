@@ -1,12 +1,13 @@
-package com.capgemini.api.gateway;
+package com.capgemini.studentManagementSystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApiGatewayApplication {
+public class StudentManagementSystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApiGatewayApplication.class, args);
+		SpringApplication.run(StudentManagementSystemApplication.class, args);
 	}
+
 }
