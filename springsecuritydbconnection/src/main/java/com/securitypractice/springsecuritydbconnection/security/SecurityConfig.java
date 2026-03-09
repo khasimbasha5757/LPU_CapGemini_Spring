@@ -1,5 +1,4 @@
-package com.securitypractice.springsecuritydbconnection.security;
-
+package com.securitypractice.springsecuritydbconnection.security; 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -10,11 +9,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SecurityConfig {
-	
+public class SecurityConfig {	
 	//to encrypt password, it is a interface
 	@Bean
 	public PasswordEncoder encode() {
@@ -34,5 +33,4 @@ public class SecurityConfig {
 						)
 				.httpBasic(Customizer.withDefaults()).build();
 	}
-
 }
